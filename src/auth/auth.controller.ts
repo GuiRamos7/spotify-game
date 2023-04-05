@@ -22,7 +22,6 @@ export class AuthController {
   ): Promise<Response> {
     const {
       user,
-      authInfo,
     }: {
       user: Profile;
       authInfo: {
@@ -42,9 +41,6 @@ export class AuthController {
     const jwt = this.authService.login(user);
 
     res.set('authorization', `Bearer ${jwt}`);
-    return res.status(201).json({ authInfo, user });
+    res.redirect(`http://localhost:3001?key=${jwt}`);
   }
 }
-
-// asd20071999@dsa.com
-// 123123Gui

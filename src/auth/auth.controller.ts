@@ -20,16 +20,7 @@ export class AuthController {
     @Req() req: any,
     @Res() res: Response,
   ): Promise<Response> {
-    const {
-      user,
-    }: {
-      user: Profile;
-      authInfo: {
-        accessToken: string;
-        refreshToken: string;
-        expires_in: number;
-      };
-    } = req;
+    const { user, authInfo } = req;
 
     if (!user) {
       res.redirect('/');
@@ -40,7 +31,14 @@ export class AuthController {
 
     const jwt = this.authService.login(user);
 
-    res.set('authorization', `Bearer ${jwt}`);
-    res.redirect(`http://localhost:3001?key=${jwt}`);
+    res.set('authorization', `Bearer ${authInfo.accessToken}`);
+    res.redirect(`http://localhost:3001?key=${authInfo.accessToken}`);
+    return res.status(201).json({ authInfo, user });
   }
 }
+
+// asd20071999@dsa.com
+// 123123Gui
+
+// guioliveiraramos10@gmail.com
+// bRDpbeLnZPeR63R3RCvqc!.N.t8KdqaDVrnEhYWih@NGygXcmRHnXhQDEsd4PEW66uYRY2brN!4-6oy3KuPPwWQD7dJ!o9!eAX!T

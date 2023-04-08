@@ -6,6 +6,7 @@ export class SpotifyOauthStrategy extends PassportStrategy(
   'spotify',
 ) {
   constructor() {
+    console.log(process.env.CALLBACK_URL);
     super(
       {
         clientID: process.env.SPOTIFY_CLIENT_ID,

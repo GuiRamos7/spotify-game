@@ -32,7 +32,9 @@ export class AuthController {
     const jwt = this.authService.login(user);
 
     res.set('authorization', `Bearer ${authInfo.accessToken}`);
-    res.redirect(`http://localhost:3001?key=${authInfo.accessToken}`);
+    res.redirect(
+      `https://spotify-game-front-dqln.vercel.app?key=${authInfo.accessToken}`,
+    );
     return res.status(201).json({ authInfo, user });
   }
 }
